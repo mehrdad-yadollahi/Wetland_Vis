@@ -256,9 +256,6 @@ function updateVisualizations(selectedData, dataset) {
 
     drawScatterPlot(filteredData, yAxisParameter, xAxisParameter); // Update the scatter plot
     drawBarChart(parameterData, yAxisParameter); // Update the bar chart
-
-    // Determine which parameter to use for the time series plot
-    // Here we use yAxisParameter, but you can change it if needed
     drawTimeSeries(filteredData, yAxisParameter); // Update the time series plot
 }
 
@@ -317,8 +314,9 @@ function drawScatterPlot(data, yAxisParameter, xAxisParameter) {
         .attr("x", width/2 + margin.left)
         .attr("y", height + margin.top + 20)
         .text(xAxisParameter)
-        .selectAll("text")
-        .style("font-weight", "bold");
+        .style("font-size", "20px") // Larger font size
+        .style("fill", "blue") // Black color
+        .style("font-weight", "bold"); // Make text bold
 
     // Add Y axis label
     svg.append("text")
@@ -326,7 +324,10 @@ function drawScatterPlot(data, yAxisParameter, xAxisParameter) {
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left + 20)
         .attr("x", -margin.top - height/2 + 20)
-        .text(yAxisParameter);
+        .text(yAxisParameter)
+        .style("font-size", "20px") // Larger font size
+        .style("fill", "blue") // Black color
+        .style("font-weight", "bold"); // Make text bold
 
 }
 
@@ -403,7 +404,10 @@ function drawBarChart(data, parameter) {
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left + 20)
         .attr("x", -margin.top - height / 2 + 20)
-        .text("Average " + parameter);
+        .text("Average " + parameter)
+        .style("font-size", "25px") // Larger font size
+        .style("fill", "blue") // Black color
+        .style("font-weight", "bold"); // Make text bold
 }
 
 // Function to draw the time series plot with sorted averages
@@ -464,7 +468,7 @@ chart.append("g")
         .attr("transform", `translate(${width / 2},${height + margin.bottom - 10})`)
         .style("text-anchor", "middle")
         .style("font-size", "20px") // Larger font size
-        .style("fill", "black") // Black color
+        .style("fill", "blue") // Black color
         .style("font-weight", "bold"); // Make text bold
 
 // Add Y axis label
@@ -473,8 +477,9 @@ chart.append("g")
         .attr("y", 0 - margin.left)
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
-        .style("font-size", "16px") // Larger font size
-        .style("fill", "black") // Black color
+        .style("font-size", "25px") // Larger font size
+        .style("fill", "blue") // Black color
+        .style("font-weight", "bold") // Make text bold
         .style("text-anchor", "middle")
         .text(parameter);
 
@@ -524,7 +529,7 @@ function hideTooltip() {
     .attr("cx", d => x(d.visitDate))
     .attr("cy", d => y(d.avgValue))
     .attr("r", 5)
-    .attr("fill", "blue")
+    .attr("fill", "red")
     .on("mouseover", showTooltip)
     .on("mouseout", hideTooltip);
 }
